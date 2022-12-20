@@ -1,6 +1,9 @@
 from flask import Flask
+import logging
 
 app = Flask(__name__)
+
+LOGGER = logging.getLogger(__name__)
 
 @app.route('/', methods=["GET"])
 def hello_world():
@@ -15,4 +18,10 @@ src="https://www.googletagmanager.com/gtag/js?id=G-PNWR0TFW4H"></script>
  gtag('config', 'G-PNWR0TFW4H');
 </script>
  """
- return prefix_google + "Hello World"
+ return prefix_google + "Welcome to our page"
+
+@app.route('/logger', methods=["GET"])
+def logger():
+    script = """
+    <script> console.log("logger") </script>"""
+    return "There is the logger" + script
